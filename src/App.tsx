@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
+import FormUsers from './components/Form';
 import './App.css';
+import { Grid, Image } from 'semantic-ui-react';
+import { IUser } from './Interface/IUser';
+import UserList from './components/UserList';
 
 function App() {
+  const [users, setUsers] = useState<Array<IUser>>([
+    { name: 'Dart', email: 'carlos.a@3.com', isRegistered: true, id: '1' },
+  ]);
+
+  const handlerAdduser = (user: IUser) => {
+    setUsers([...users, user]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Grid celled>
+        <Grid.Row>
+          <Grid.Column width={6}>
+            <FormUsers onAddUser={handlerAdduser} />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={12}>
+            <UserList users={users} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </div>
   );
 }
