@@ -15,17 +15,15 @@ test('Testing length form elements', () => {
 });
 
 test('Testing user inputs', () => {
-  const argList: Array<IUser> = [];
-  const callBack = (users: IUser) => {
-    argList.push(users);
-  };
+  const mock = jest.fn();
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  render(<Form onAddUser={callBack} />);
+  render(<Form onAddUser={mock} />);
 
   const [nameInput, emailInput] = screen.getAllByRole('textbox');
 
   user.click(nameInput);
-  user.keyboard('Deusa Athena');
+  user.keyboard('Athena');
 
   user.click(emailInput);
   user.keyboard('athena@gmail.com');
@@ -33,9 +31,11 @@ test('Testing user inputs', () => {
   const button = screen.getByRole('button');
   user.click(button);
 
-  expect(argList).toHaveLength(1);
-  expect(argList).toEqual({
-    name: 'Deusa Athena',
+  expect(mock).toHaveBeenCalled();
+  expect(mock).toHaveBeenCalledWith({
+    name: 'Athena',
     email: 'athena@gmail.com',
+    isRegistered: false,
+    id: 1,
   });
 });

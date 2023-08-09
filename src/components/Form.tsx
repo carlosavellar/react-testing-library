@@ -15,7 +15,7 @@ const FormUsers = (props: IFormUsers) => {
 
   const handlerSubmit = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    onAddUser({ email, name, isRegistered, id });
+    onAddUser({ email, name, isRegistered, id: 1 });
   };
 
   return (
