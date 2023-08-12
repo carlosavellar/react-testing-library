@@ -1,5 +1,5 @@
 import React from 'react';
-import { List } from 'semantic-ui-react';
+import { Label, List, Table } from 'semantic-ui-react';
 import { IUser } from '../Interface/IUser';
 
 interface IUserList {
@@ -8,22 +8,30 @@ interface IUserList {
 
 export default function UserList(props: IUserList) {
   const { users } = props;
-  console.log(users);
   return (
-    <List divided relaxed>
-      {users.map((user) => {
-        return (
-          <List.Item key={user.id}>
-            <List.Content>
-              <List.Header>{user.name}</List.Header>
-              <List.Description>{user.email}</List.Description>
-              <List.Description>
+    <Table celled>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Name</Table.HeaderCell>
+          <Table.HeaderCell>Email</Table.HeaderCell>
+          <Table.HeaderCell>Is Registered</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body data-testid="users">
+        {users.map((user) => {
+          return (
+            <Table.Row key={user.id}>
+              <Table.Cell>
+                <Label ribbon>{user.name}</Label>
+              </Table.Cell>
+              <Table.Cell>{user.email}</Table.Cell>
+              <Table.Cell>
                 {user.isRegistered ? 'Is registered' : 'No registerd'}
-              </List.Description>
-            </List.Content>
-          </List.Item>
-        );
-      })}
-    </List>
+              </Table.Cell>
+            </Table.Row>
+          );
+        })}
+      </Table.Body>
+    </Table>
   );
 }

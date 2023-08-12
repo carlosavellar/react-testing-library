@@ -23,7 +23,7 @@ const FormUsers = (props: IFormUsers) => {
       <h2>React Testing Library</h2>
       <Form onSubmit={(e) => handlerSubmit(e)}>
         <Form.Field>
-          <label htmlFor="">Name</label>
+          <label htmlFor="name">Name</label>
           <input
             placeholder="Name"
             id="name"
@@ -32,7 +32,7 @@ const FormUsers = (props: IFormUsers) => {
           />
         </Form.Field>
         <Form.Field>
-          <label htmlFor="name">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             placeholder="Email"
             id="email"

@@ -20,7 +20,10 @@ test('Testing user inputs', () => {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   render(<Form onAddUser={mock} />);
 
-  const [nameInput, emailInput] = screen.getAllByRole('textbox');
+  // const [nameInput, emailInput] = screen.getAllByRole('textbox');
+
+  const nameInput = screen.getByRole('textbox', { name: /name/i });
+  const emailInput = screen.getByRole(' ', { name: /email/i });
 
   user.click(nameInput);
   user.keyboard('Athena');

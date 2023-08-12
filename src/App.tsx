@@ -8,7 +8,7 @@ import UserList from './components/UserList';
 
 function App() {
   const [users, setUsers] = useState<Array<IUser>>([
-    { name: 'Dart', email: 'carlos.a@3.com', isRegistered: true, id: '1' },
+    { name: 'Dart', email: 'carlos.a@3.com', isRegistered: true, id: 1 },
   ]);
 
   const handlerAdduser = (user: IUser) => {
