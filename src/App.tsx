@@ -5,14 +5,15 @@ import './App.css';
 import { Grid, Image } from 'semantic-ui-react';
 import { IUser } from './Interface/IUser';
 import UserList from './components/UserList';
+import { act } from 'react-dom/test-utils';
 
 function App() {
-  const [users, setUsers] = useState<Array<IUser>>([
-    { name: 'Dart', email: 'carlos.a@3.com', isRegistered: true, id: 1 },
-  ]);
+  const [users, setUsers] = useState<Array<IUser>>([{ name: 'Dart', email: 'carlos.a@3.com', isRegistered: true, id: 1 }]);
 
   const handlerAdduser = (user: IUser) => {
-    setUsers([...users, user]);
+    act(() => {
+      setUsers([...users, user]);
+    });
   };
 
   return (

@@ -13,9 +13,9 @@ test('renders learn react link', () => {
 test('Testing adding a new user', () => {
   render(<App />);
 
-  const nameInput = screen.getByRole('textbox', { name: /name/i });
   const emailInput = screen.getByRole('textbox', { name: /email/i });
-  const id = screen.getByRole('checkbox', { name: /isRegistered/i });
+  const nameInput = screen.getByRole('textbox', { name: /name/i });
+  // const id = screen.getByRole('checkbox', { name: /isRegistered/i });
 
   const button = screen.getByRole('button');
 

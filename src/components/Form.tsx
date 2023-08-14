@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Grid, Image, Button, Checkbox, Form } from 'semantic-ui-react';
 import { IUser } from '../Interface/IUser';
 import { v4 as uuidv4 } from 'uuid';
+import { act } from 'react-dom/test-utils';
 interface IFormUsers {
   onAddUser: (user: IUser) => void;
 }
@@ -15,7 +16,9 @@ const FormUsers = (props: IFormUsers) => {
 
   const handlerSubmit = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    onAddUser({ email, name, isRegistered, id: Math.random() * 0.3 });
+    act(() => {
+      onAddUser({ email, name, isRegistered, id: Math.random() * 0.3 });
+    });
   };
 
   return (
