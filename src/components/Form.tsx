@@ -15,7 +15,7 @@ const FormUsers = (props: IFormUsers) => {
 
   const handlerSubmit = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    onAddUser({ email, name, isRegistered, id: 1 });
+    onAddUser({ email, name, isRegistered, id: Math.random() * 0.3 });
   };
 
   return (
@@ -24,26 +24,14 @@ const FormUsers = (props: IFormUsers) => {
       <Form onSubmit={(e) => handlerSubmit(e)}>
         <Form.Field>
           <label htmlFor="name">Name</label>
-          <input
-            placeholder="Name"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+          <input placeholder="Name" id="name" value={name} onChange={(e) => setName(e.target.value)} />
         </Form.Field>
         <Form.Field>
           <label htmlFor="email">Email</label>
-          <input
-            placeholder="Email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input placeholder="Email" id="email" onChange={(e) => setEmail(e.target.value)} />
         </Form.Field>
         <Form.Field>
-          <Checkbox
-            onChange={() => setIsRegistered(!isRegistered)}
-            label="I agree to the Terms and Conditions"
-          />
+          <Checkbox onChange={() => setIsRegistered(!isRegistered)} label="I agree to the Terms and Conditions" />
         </Form.Field>
         <Button type="submit">Submit</Button>
       </Form>

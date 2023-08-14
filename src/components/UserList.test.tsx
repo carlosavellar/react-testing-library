@@ -3,7 +3,7 @@ import { screen, render, getAllByRole, within } from '@testing-library/react';
 import UserList from './UserList';
 import { IUser } from '../Interface/IUser';
 
-test('Test amount of rows', () => {
+const renderComponent = () => {
   const users: Array<IUser> = [
     {
       name: 'Madonna',
@@ -19,7 +19,11 @@ test('Test amount of rows', () => {
     },
   ];
   render(<UserList users={users} />);
+  return { users };
+};
 
+test('Test amount of rows', () => {
+  renderComponent();
   screen.logTestingPlaygroundURL();
 
   // const rows = screen.getAllByRole('row');
@@ -27,4 +31,16 @@ test('Test amount of rows', () => {
 
   expect(rows).toHaveLength(2);
   console.log(rows);
+});
+
+test('Testing table content', () => {
+  const { users } = renderComponent();
+
+  for (const user of users) {
+    const uName = screen.getByRole('cell', { name: user.name });
+    const uEmail = screen.getByRole('cell', { name: user.email });
+
+    expect(uName).toBeInTheDocument();
+    expect(uEmail).toBeInTheDocument();
+  }
 });
